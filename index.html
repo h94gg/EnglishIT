@@ -26,7 +26,7 @@
 <body>
 
 <div class="container">
-    <div id="scoreBox">النتيجة: 0 / 25</div>
+    <div id="scoreBox">النتيجة: 0 / 0</div>
     <h2>(IT Skills & Vocabulary)</h2>
 
     <div id="quiz-container">
@@ -39,149 +39,246 @@
 
 <script>
 const questions = [
+    // ================= المحاضرة 16 =================
     { q: "Which word is the odd one out: Web, poultry, password, surf?", arQ: "أي كلمة هي الشاذة أو الغريبة: Web, poultry, password, surf؟", options: [
-        { en: "a) Web", ar: "أ) ويب", correct: false },
-        { en: "b) poultry", ar: "ب) دواجن", correct: true },
-        { en: "c) password", ar: "ج) كلمة مرور", correct: false },
-        { en: "d) surf", ar: "د) تصفح", correct: false }
+        { en: "a) Web", ar: "ويب", correct: false }, { en: "b) poultry", ar: "دواجن", correct: true }, { en: "c) password", ar: "كلمة مرور", correct: false }, { en: "d) surf", ar: "تصفح", correct: false }
     ]},
     { q: "Which word is the odd one out: say, go, generally, speak?", arQ: "أي كلمة هي الشاذة أو الغريبة: say, go, generally, speak؟", options: [
-        { en: "a) say", ar: "أ) قل", correct: false },
-        { en: "b) go", ar: "ب) اذهب", correct: false },
-        { en: "c) generally", ar: "ج) عموماً", correct: true },
-        { en: "d) speak", ar: "د) تحدث", correct: false }
+        { en: "a) say", ar: "قل", correct: false }, { en: "b) go", ar: "اذهب", correct: false }, { en: "c) generally", ar: "عموماً", correct: true }, { en: "d) speak", ar: "تحدث", correct: false }
     ]},
     { q: "Which word is the odd one out: pollution, keyboard, environment, drainage?", arQ: "أي كلمة هي الشاذة أو الغريبة: pollution, keyboard, environment, drainage؟", options: [
-        { en: "a) pollution", ar: "أ) تلوث", correct: false },
-        { en: "b) keyboard", ar: "ب) لوحة مفاتيح", correct: true },
-        { en: "c) environment", ar: "ج) بيئة", correct: false },
-        { en: "d) drainage", ar: "د) تصريف", correct: false }
+        { en: "a) pollution", ar: "تلوث", correct: false }, { en: "b) keyboard", ar: "لوحة مفاتيح", correct: true }, { en: "c) environment", ar: "بيئة", correct: false }, { en: "d) drainage", ar: "تصريف", correct: false }
     ]},
     { q: "Which word is the odd one out: studied, stay, cooked, went?", arQ: "أي كلمة هي الشاذة أو الغريبة: studied, stay, cooked, went؟", options: [
-        { en: "a) studied", ar: "أ) درس", correct: false },
-        { en: "b) stay", ar: "ب) يبقى", correct: true },
-        { en: "c) cooked", ar: "ج) طبخ", correct: false },
-        { en: "d) went", ar: "د) ذهب", correct: false }
+        { en: "a) studied", ar: "درس", correct: false }, { en: "b) stay", ar: "يبقى", correct: true }, { en: "c) cooked", ar: "طبخ", correct: false }, { en: "d) went", ar: "ذهب", correct: false }
     ]},
     { q: "Which word is the odd one out: sewage, ventilation, toxins, bakery?", arQ: "أي كلمة هي الشاذة أو الغريبة: sewage, ventilation, toxins, bakery؟", options: [
-        { en: "a) sewage", ar: "أ) مياه الصرف الصحي", correct: false },
-        { en: "b) ventilation", ar: "ب) تهوية", correct: false },
-        { en: "c) toxins", ar: "ج) سموم", correct: false },
-        { en: "d) bakery", ar: "د) مخبز", correct: true }
+        { en: "a) sewage", ar: "مياه الصرف الصحي", correct: false }, { en: "b) ventilation", ar: "تهوية", correct: false }, { en: "c) toxins", ar: "سموم", correct: false }, { en: "d) bakery", ar: "مخبز", correct: true }
     ]},
     { q: "Which word is the odd one out: Iron, coal, available, Limestone?", arQ: "أي كلمة هي الشاذة أو الغريبة: Iron, coal, available, Limestone؟", options: [
-        { en: "a) Iron", ar: "أ) حديد", correct: false },
-        { en: "b) coal", ar: "ب) فحم", correct: false },
-        { en: "c) available", ar: "ج) متاح", correct: true },
-        { en: "d) Limestone", ar: "د) حجر جيري", correct: false }
+        { en: "a) Iron", ar: "حديد", correct: false }, { en: "b) coal", ar: "فحم", correct: false }, { en: "c) available", ar: "متاح", correct: true }, { en: "d) Limestone", ar: "حجر جيري", correct: false }
     ]},
     { q: "Which word is the odd one out: hard, easily, quickly, when?", arQ: "أي كلمة هي الشاذة أو الغريبة: hard, easily, quickly, when؟", options: [
-        { en: "a) hard", ar: "أ) صعب", correct: false },
-        { en: "b) easily", ar: "ب) بسهولة", correct: false },
-        { en: "c) quickly", ar: "ج) بسرعة", correct: false },
-        { en: "d) when", ar: "د) متى", correct: true }
+        { en: "a) hard", ar: "صعب", correct: false }, { en: "b) easily", ar: "بسهولة", correct: false }, { en: "c) quickly", ar: "بسرعة", correct: false }, { en: "d) when", ar: "متى", correct: true }
     ]},
     { q: "Which word is the odd one out: sensor, interface, actuator, waiter?", arQ: "أي كلمة هي الشاذة أو الغريبة: sensor, interface, actuator, waiter؟", options: [
-        { en: "a) sensor", ar: "أ) مستشعر", correct: false },
-        { en: "b) interface", ar: "ب) واجهة", correct: false },
-        { en: "c) actuator", ar: "ج) مشغل", correct: false },
-        { en: "d) waiter", ar: "د) نادل", correct: true }
+        { en: "a) sensor", ar: "مستشعر", correct: false }, { en: "b) interface", ar: "واجهة", correct: false }, { en: "c) actuator", ar: "مشغل", correct: false }, { en: "d) waiter", ar: "نادل", correct: true }
     ]},
     { q: "Which word is the odd one out: protocol, vegetables, poultry, dairy?", arQ: "أي كلمة هي الشاذة أو الغريبة: protocol, vegetables, poultry, dairy؟", options: [
-        { en: "a) protocol", ar: "أ) بروتوكول", correct: true },
-        { en: "b) vegetables", ar: "ب) خضروات", correct: false },
-        { en: "c) poultry", ar: "ج) دواجن", correct: false },
-        { en: "d) dairy", ar: "د) منتجات الألبان", correct: false }
+        { en: "a) protocol", ar: "بروتوكول", correct: true }, { en: "b) vegetables", ar: "خضروات", correct: false }, { en: "c) poultry", ar: "دواجن", correct: false }, { en: "d) dairy", ar: "منتجات الألبان", correct: false }
     ]},
     { q: "Which word is the odd one out: chat room, homepage, pollution, web?", arQ: "أي كلمة هي الشاذة أو الغريبة: chat room, homepage, pollution, web؟", options: [
-        { en: "a) chat room", ar: "أ) غرفة دردشة", correct: false },
-        { en: "b) homepage", ar: "ب) صفحة رئيسية", correct: false },
-        { en: "c) pollution", ar: "ج) تلوث", correct: true },
-        { en: "d) web", ar: "د) ويب", correct: false }
+        { en: "a) chat room", ar: "غرفة دردشة", correct: false }, { en: "b) homepage", ar: "صفحة رئيسية", correct: false }, { en: "c) pollution", ar: "تلوث", correct: true }, { en: "d) web", ar: "ويب", correct: false }
     ]},
     { q: "Which word is the odd one out: browser, home page, surf, acid rain?", arQ: "أي كلمة هي الشاذة أو الغريبة: browser, home page, surf, acid rain؟", options: [
-        { en: "a) browser", ar: "أ) متصفح", correct: false },
-        { en: "b) home page", ar: "ب) صفحة رئيسية", correct: false },
-        { en: "c) surf", ar: "ج) تصفح", correct: false },
-        { en: "d) acid rain", ar: "د) مطر حمضي", correct: true }
+        { en: "a) browser", ar: "متصفح", correct: false }, { en: "b) home page", ar: "صفحة رئيسية", correct: false }, { en: "c) surf", ar: "تصفح", correct: false }, { en: "d) acid rain", ar: "مطر حمضي", correct: true }
     ]},
+    { q: "Classify this word: Repair", arQ: "صنف هذه الكلمة: Repair", options: [
+        { en: "a) Maintenance", ar: "صيانة", correct: true }, { en: "b) Food", ar: "طعام", correct: false }, { en: "c) Internet", ar: "إنترنت", correct: false }
+    ]},
+    { q: "Classify this word: Cheese", arQ: "صنف هذه الكلمة: Cheese", options: [
+        { en: "a) Maintenance", ar: "صيانة", correct: false }, { en: "b) Food", ar: "طعام", correct: true }, { en: "c) Internet", ar: "إنترنت", correct: false }
+    ]},
+    { q: "Classify this word: Down load", arQ: "صنف هذه الكلمة: Down load", options: [
+        { en: "a) Maintenance", ar: "صيانة", correct: false }, { en: "b) Food", ar: "طعام", correct: false }, { en: "c) Internet", ar: "إنترنت", correct: true }
+    ]},
+    { q: "Classify this word: Beef", arQ: "صنف هذه الكلمة: Beef", options: [
+        { en: "a) Maintenance", ar: "صيانة", correct: false }, { en: "b) Food", ar: "طعام", correct: true }, { en: "c) Internet", ar: "إنترنت", correct: false }
+    ]},
+    { q: "Classify this word: Surf", arQ: "صنف هذه الكلمة: Surf", options: [
+        { en: "a) Maintenance", ar: "صيانة", correct: false }, { en: "b) Food", ar: "طعام", correct: false }, { en: "c) Internet", ar: "إنترنت", correct: true }
+    ]},
+    { q: "State whether True or False: Key board is a hard ware in a computer.", arQ: "صح أم خطأ: لوحة المفاتيح هي من الأجهزة (المكونات المادية) في الكمبيوتر.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: Virus is a hidden program that can hurt your computer.", arQ: "صح أم خطأ: الفيروس هو برنامج مخفي يمكنه إيذاء جهازك.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: Calculus is a branch of Mathematics.", arQ: "صح أم خطأ: التفاضل والتكامل فرع من فروع الرياضيات.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: Bakery is a place where bread is made.", arQ: "صح أم خطأ: المخبز هو مكان يصنع فيه الخبز.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: Mobile phones can sap your precious time.", arQ: "صح أم خطأ: الهواتف المحمولة يمكن أن تستنزف وقتك الثمين.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: Robot is a mechatronic device that can do many jobs.", arQ: "صح أم خطأ: الروبوت هو جهاز ميكاترونيك يمكنه القيام بالعديد من الوظائف.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: Mechatronics involves mechanical and electrical engineering.", arQ: "صح أم خطأ: الميكاترونيك هو فرع هندسي يشمل الهندسة الميكانيكية والكهربائية.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: Chat room is a place where you talk by typing.", arQ: "صح أم خطأ: غرفة الدردشة هي مكان تتحدث فيه عن طريق الكتابة.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: Web site is a place on the internet you can visit.", arQ: "صح أم خطأ: الموقع الإلكتروني هو مكان على الإنترنت يمكنك زيارته.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: Pass word is a secret word that only you and your parents know.", arQ: "صح أم خطأ: كلمة المرور هي كلمة سرية تعرفها أنت ووالداك فقط.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: A microwave oven is a kitchen appliance that cooks or heats food.", arQ: "صح أم خطأ: الميكروويف هو جهاز مطبخ يطبخ أو يسخن الطعام.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether True or False: Pollution is something that causes damage to the environment.", arQ: "صح أم خطأ: التلوث هو شيء يسبب ضرراً للبيئة.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
+    ]},
+
+    // ================= المحاضرة 18 =================
     { q: "What do you do to improve your IT skills?", arQ: "ماذا تفعل لتحسين مهاراتك في تكنولوجيا المعلومات؟", options: [
-        { en: "a) I take courses, watch tutorials, practice daily, and read blogs.", ar: "أ) أتابع دورات، أشاهد شروحات، أمارس يومياً، وأقرأ المدونات.", correct: true },
-        { en: "b) Because it helps in building a future career.", ar: "ب) لأنه يساعد في بناء مستقبل مهني.", correct: false },
-        { en: "c) To apply what I learn.", ar: "ج) لتطبيق ما أتعلمه.", correct: false },
-        { en: "d) On online forums.", ar: "د) في المنتديات عبر الإنترنت.", correct: false }
+        { en: "a) I take courses, watch tutorials, practice daily, and read blogs.", ar: "أتابع دورات، أشاهد شروحات، أمارس يومياً، وأقرأ المدونات.", correct: true },
+        { en: "b) Because it helps in building a future career.", ar: "لأنه يساعد في بناء مستقبل مهني.", correct: false }
     ]},
     { q: "Why is improving IT skills important?", arQ: "لماذا يعتبر تحسين مهارات تكنولوجيا المعلومات مهماً؟", options: [
-        { en: "a) Because it helps in building a future career.", ar: "أ) لأنه يساعد في بناء مستقبل مهني.", correct: true },
-        { en: "b) To apply what I learn.", ar: "ب) لتطبيق ما أتعلمه.", correct: false },
-        { en: "c) On online forums.", ar: "ج) في المنتديات عبر الإنترنت.", correct: false },
-        { en: "d) Programming, networking, & Cyber Security.", ar: "د) البرمجة والشبكات والأمن السيبراني.", correct: false }
+        { en: "a) Because it helps in building a future career.", ar: "لأنه يساعد في بناء مستقبل مهني.", correct: true },
+        { en: "b) To apply what I learn.", ar: "لتطبيق ما أتعلمه.", correct: false }
     ]},
     { q: "What is the reason that you must try to work on small projects?", arQ: "ما هو السبب الذي يجعلك تحاول العمل على مشاريع صغيرة؟", options: [
-        { en: "a) To apply what I learn.", ar: "أ) لتطبيق ما أتعلمه.", correct: true },
-        { en: "b) Because it helps in building a future career.", ar: "ب) لأنه يساعد في بناء مستقبل مهني.", correct: false },
-        { en: "c) On online forums.", ar: "ج) في المنتديات عبر الإنترنت.", correct: false },
-        { en: "d) I take courses, watch tutorials, practice daily.", ar: "د) أتابع دورات وأشاهد شروحات وأمارس يومياً.", correct: false }
+        { en: "a) To apply what I learn.", ar: "لتطبيق ما أتعلمه.", correct: true },
+        { en: "b) On online forums.", ar: "في المنتديات عبر الإنترنت.", correct: false }
     ]},
     { q: "Where do you ask questions to learn more in IT field?", arQ: "أين تطرح الأسئلة لمعرفة المزيد في مجال تكنولوجيا المعلومات؟", options: [
-        { en: "a) On online forums.", ar: "أ) في المنتديات عبر الإنترنت.", correct: true },
-        { en: "b) In the bakery.", ar: "ب) في المخبز.", correct: false },
-        { en: "c) To apply what I learn.", ar: "ج) لتطبيق ما أتعلمه.", correct: false },
-        { en: "d) Because it helps in building a future career.", ar: "د) لأنه يساعد في بناء مستقبل مهني.", correct: false }
+        { en: "a) On online forums.", ar: "في المنتديات عبر الإنترنت.", correct: true },
+        { en: "b) In the bakery.", ar: "في المخبز.", correct: false }
     ]},
     { q: "What topics must you study to improve your IT skills?", arQ: "ما هي المواضيع التي يجب أن تدرسها لتحسين مهاراتك في تكنولوجيا المعلومات؟", options: [
-        { en: "a) Programming, networking, & Cyber Security.", ar: "أ) البرمجة والشبكات والأمن السيبراني.", correct: true },
-        { en: "b) Iron, coal, available, Limestone.", ar: "ب) حديد، فحم، متاح، حجر جيري.", correct: false },
-        { en: "c) On online forums.", ar: "ج) في المنتديات عبر الإنترنت.", correct: false },
-        { en: "d) To apply what I learn.", ar: "د) لتطبيق ما أتعلمه.", correct: false }
+        { en: "a) Programming, networking, & Cyber Security.", ar: "البرمجة والشبكات والأمن السيبراني.", correct: true },
+        { en: "b) Iron, coal, available, Limestone.", ar: "حديد، فحم، متاح، حجر جيري.", correct: false }
     ]},
+    { q: "Fill in the blank: I want to improve my ……… Skills", arQ: "أكمل الفراغ: أريد تحسين مهارات الـ ……… الخاصة بي", options: [
+        { en: "a) IT", ar: "تكنولوجيا المعلومات", correct: true }, { en: "b) Online", ar: "عبر الإنترنت", correct: false }
+    ]},
+    { q: "Fill in the blank: so I take ……… Courses", arQ: "أكمل الفراغ: لذلك أنا آخذ دورات ………", options: [
+        { en: "a) Online", ar: "عبر الإنترنت", correct: true }, { en: "b) Forums", ar: "منتديات", correct: false }
+    ]},
+    { q: "Fill in the blank: and watch ……… every day.", arQ: "أكمل الفراغ: وأشاهد ……… كل يوم.", options: [
+        { en: "a) Tutorials", ar: "دروس وشروحات", correct: true }, { en: "b) Experts", ar: "خبراء", correct: false }
+    ]},
+    { q: "Fill in the blank: I also join ………", arQ: "أكمل الفراغ: أنا أيضاً أنضم إلى ………", options: [
+        { en: "a) Forums", ar: "منتديات", correct: true }, { en: "b) Blogs", ar: "مدونات", correct: false }
+    ]},
+    { q: "Fill in the blank: Where I can ask ………", arQ: "أكمل الفراغ: حيث يمكنني أن أسأل ………", options: [
+        { en: "a) Questions", ar: "أسئلة", correct: true }, { en: "b) Trends", ar: "اتجاهات", correct: false }
+    ]},
+    { q: "Fill in the blank: and learn from ……… .", arQ: "أكمل الفراغ: وأتعلم من ……… .", options: [
+        { en: "a) Experts", ar: "خبراء", correct: true }, { en: "b) Projects", ar: "مشاريع", correct: false }
+    ]},
+    { q: "Fill in the blank: I work on small ………", arQ: "أكمل الفراغ: أنا أعمل على ……… صغيرة", options: [
+        { en: "a) Projects", ar: "مشاريع", correct: true }, { en: "b) Blogs", ar: "مدونات", correct: false }
+    ]},
+    { q: "Fill in the blank: to apply my ……… .", arQ: "أكمل الفراغ: لتطبيق ……… الخاصة بي.", options: [
+        { en: "a) Skills", ar: "مهارات", correct: true }, { en: "b) IT", ar: "تكنولوجيا معلومات", correct: false }
+    ]},
+    { q: "Fill in the blank: Reading ……… and staying updated", arQ: "أكمل الفراغ: قراءة ……… والبقاء على اطلاع", options: [
+        { en: "a) Blogs", ar: "المدونات", correct: true }, { en: "b) Questions", ar: "أسئلة", correct: false }
+    ]},
+    { q: "Fill in the blank: with the latest ……… Is also very useful.", arQ: "أكمل الفراغ: بأحدث ……… مفيد جداً أيضاً.", options: [
+        { en: "a) Trends", ar: "الاتجاهات (التقنيات الحديثة)", correct: true }, { en: "b) Online", ar: "عبر الإنترنت", correct: false }
+    ]},
+    { q: "Answer Yes/No: You can improve your IT skills by watching movies only.", arQ: "أجب بنعم/لا: يمكنك تحسين مهاراتك من خلال مشاهدة الأفلام فقط.", options: [
+        { en: "a) No, by watching tutorials", ar: "لا، بمشاهدة الدروس", correct: true }, { en: "b) Yes", ar: "نعم", correct: false }
+    ]},
+    { q: "Answer Yes/No: You must practice daily to develop your IT skills.", arQ: "أجب بنعم/لا: يجب أن تمارس يومياً لتطوير مهاراتك.", options: [
+        { en: "a) Yes", ar: "نعم", correct: true }, { en: "b) No", ar: "لا", correct: false }
+    ]},
+    { q: "Answer Yes/No: You must avoid asking questions in forums if you want to improve your IT skills.", arQ: "أجب بنعم/لا: يجب تجنب طرح الأسئلة في المنتديات إذا أردت تحسين مهاراتك.", options: [
+        { en: "a) No, you must do that to learn more", ar: "لا، يجب أن تفعل ذلك لتتعلم أكثر", correct: true }, { en: "b) Yes", ar: "نعم", correct: false }
+    ]},
+    { q: "Answer Yes/No: Reading tech blogs help you stay updated.", arQ: "أجب بنعم/لا: قراءة المدونات التقنية تساعدك على البقاء مطلعاً.", options: [
+        { en: "a) Yes", ar: "نعم", correct: true }, { en: "b) No", ar: "لا", correct: false }
+    ]},
+    { q: "Answer Yes/No: Cyber Security is not an important topic if you want to improve your IT skills.", arQ: "أجب بنعم/لا: الأمن السيبراني ليس موضوعاً مهماً إذا أردت تحسين مهاراتك.", options: [
+        { en: "a) No, it is important", ar: "لا، إنه مهم", correct: true }, { en: "b) Yes", ar: "نعم", correct: false }
+    ]},
+    { q: "What is the opposite of: Improve?", arQ: "ما هو معاكس كلمة: Improve (يتحسن)؟", options: [
+        { en: "a) Decline / Weaken", ar: "ينحدر / يضعف", correct: true }, { en: "b) Beginner", ar: "مبتدئ", correct: false }
+    ]},
+    { q: "What is the opposite of: Online?", arQ: "ما هو معاكس كلمة: Online (متصل بالانترنت)؟", options: [
+        { en: "a) Offline", ar: "غير متصل", correct: true }, { en: "b) Useful", ar: "مفيد", correct: false }
+    ]},
+    { q: "What is the opposite of: Experts?", arQ: "ما هو معاكس كلمة: Experts (خبراء)؟", options: [
+        { en: "a) Beginner", ar: "مبتدئ", correct: true }, { en: "b) Large / Big", ar: "كبير", correct: false }
+    ]},
+    { q: "What is the opposite of: Daily?", arQ: "ما هو معاكس كلمة: Daily (يومياً)؟", options: [
+        { en: "a) Rarely / Occasionally", ar: "نادراً / أحياناً", correct: true }, { en: "b) Answer", ar: "إجابة", correct: false }
+    ]},
+    { q: "What is the opposite of: Latest?", arQ: "ما هو معاكس كلمة: Latest (أحدث)؟", options: [
+        { en: "a) Old / Outdated", ar: "قديم / عفى عليه الزمن", correct: true }, { en: "b) Shrink", ar: "ينكمش", correct: false }
+    ]},
+    { q: "What is the opposite of: Small?", arQ: "ما هو معاكس كلمة: Small (صغير)؟", options: [
+        { en: "a) Large / Big", ar: "كبير", correct: true }, { en: "b) Decline", ar: "ينحدر", correct: false }
+    ]},
+    { q: "What is the opposite of: Useful?", arQ: "ما هو معاكس كلمة: Useful (مفيد)؟", options: [
+        { en: "a) Useless", ar: "غير مفيد / بلا فائدة", correct: true }, { en: "b) Forget", ar: "ينسى", correct: false }
+    ]},
+    { q: "What is the opposite of: Ask?", arQ: "ما هو معاكس كلمة: Ask (يسأل)؟", options: [
+        { en: "a) Answer / Ignore", ar: "يجيب / يتجاهل", correct: true }, { en: "b) Beginner", ar: "مبتدئ", correct: false }
+    ]},
+    { q: "What is the opposite of: Grow?", arQ: "ما هو معاكس كلمة: Grow (ينمو)؟", options: [
+        { en: "a) Shrink / Decline", ar: "ينكمش / يتراجع", correct: true }, { en: "b) Offline", ar: "غير متصل", correct: false }
+    ]},
+    { q: "What is the opposite of: Apply?", arQ: "ما هو معاكس كلمة: Apply (يطبق)؟", options: [
+        { en: "a) Ignore / Forget", ar: "يتجاهل / ينسى", correct: true }, { en: "b) Large", ar: "كبير", correct: false }
+    ]},
+    { q: "What is the synonym of: Improve?", arQ: "ما هو مرادف كلمة: Improve (يطور)؟", options: [
+        { en: "a) Develop / Enhance", ar: "يطور / يعزز", correct: true }, { en: "b) Abilities", ar: "قدرات", correct: false }
+    ]},
+    { q: "What is the synonym of: Skills?", arQ: "ما هو مرادف كلمة: Skills (مهارات)؟", options: [
+        { en: "a) Abilities / Capabilities", ar: "قدرات / إمكانيات", correct: true }, { en: "b) Lessons", ar: "دروس", correct: false }
+    ]},
+    { q: "What is the synonym of: Important?", arQ: "ما هو مرادف كلمة: Important (مهم)؟", options: [
+        { en: "a) Essential / Necessary", ar: "أساسي / ضروري", correct: true }, { en: "b) View", ar: "يشاهد", correct: false }
+    ]},
+    { q: "What is the synonym of: Courses?", arQ: "ما هو مرادف كلمة: Courses (دورات)؟", options: [
+        { en: "a) Lessons / Classes", ar: "دروس / حصص", correct: true }, { en: "b) Tasks", ar: "مهام", correct: false }
+    ]},
+    { q: "What is the synonym of: Watch?", arQ: "ما هو مرادف كلمة: Watch (يشاهد)؟", options: [
+        { en: "a) View / Observe", ar: "يشاهد / يلاحظ", correct: true }, { en: "b) Study", ar: "يدرس", correct: false }
+    ]},
+    { q: "What is the synonym of: Learn?", arQ: "ما هو مرادف كلمة: Learn (يتعلم)؟", options: [
+        { en: "a) Study / Understand", ar: "يدرس / يفهم", correct: true }, { en: "b) Train", ar: "يتدرب", correct: false }
+    ]},
+    { q: "What is the synonym of: Practice?", arQ: "ما هو مرادف كلمة: Practice (يمارس / يتدرب)؟", options: [
+        { en: "a) Train / Rehearse", ar: "يتدرب / يتمرن", correct: true }, { en: "b) Participate", ar: "يشارك", correct: false }
+    ]},
+    { q: "What is the synonym of: Projects?", arQ: "ما هو مرادف كلمة: Projects (مشاريع)؟", options: [
+        { en: "a) Tasks / Assignments", ar: "مهام / واجبات", correct: true }, { en: "b) Informed", ar: "مطلع", correct: false }
+    ]},
+    { q: "What is the synonym of: Join?", arQ: "ما هو مرادف كلمة: Join (ينضم)؟", options: [
+        { en: "a) Participate in / Take part in", ar: "يشارك في", correct: true }, { en: "b) Develop", ar: "يطور", correct: false }
+    ]},
+    { q: "What is the synonym of: Updated?", arQ: "ما هو مرادف كلمة: Updated (مُحَدَّث / مطلع)؟", options: [
+        { en: "a) Informed / Current", ar: "مطلع / حالي", correct: true }, { en: "b) Essential", ar: "أساسي", correct: false }
+    ]},
+
+    // ================= المحاضرة 17 =================
     { q: "Match the English word with its meaning: Crucial", arQ: "طابق الكلمة الإنجليزية مع معناها: Crucial", options: [
-        { en: "a) Crucial = حاسم", ar: "أ) حاسم", correct: true },
-        { en: "b) Productivity = انتاجية", ar: "ب) انتاجية", correct: false },
-        { en: "c) Efficiently = بكفاءة", ar: "ج) بكفاءة", correct: false },
-        { en: "d) Audience = جمهور", ar: "د) جمهور", correct: false }
+        { en: "a) حاسم (Crucial)", ar: "حاسم", correct: true }, { en: "b) انتاجية (Productivity)", ar: "انتاجية", correct: false }
     ]},
     { q: "Match the English word with its meaning: Productivity", arQ: "طابق الكلمة الإنجليزية مع معناها: Productivity", options: [
-        { en: "a) Productivity = انتاجية", ar: "أ) انتاجية", correct: true },
-        { en: "b) Crucial = حاسم", ar: "ب) حاسم", correct: false },
-        { en: "c) Efficiently = بكفاءة", ar: "ج) بكفاءة", correct: false },
-        { en: "d) Audience = جمهور", ar: "د) جمهور", correct: false }
+        { en: "a) انتاجية (Productivity)", ar: "انتاجية", correct: true }, { en: "b) جمهور (Audience)", ar: "جمهور", correct: false }
     ]},
     { q: "Match the English word with its meaning: Efficiently", arQ: "طابق الكلمة الإنجليزية مع معناها: Efficiently", options: [
-        { en: "a) Efficiently = بكفاءة", ar: "أ) بكفاءة", correct: true },
-        { en: "b) Crucial = حاسم", ar: "ب) حاسم", correct: false },
-        { en: "c) Productivity = انتاجية", ar: "ج) انتاجية", correct: false },
-        { en: "d) Audience = جمهور", ar: "د) جمهور", correct: false }
+        { en: "a) بكفاءة (Efficiently)", ar: "بكفاءة", correct: true }, { en: "b) حاسم (Crucial)", ar: "حاسم", correct: false }
     ]},
     { q: "Match the English word with its meaning: Audience", arQ: "طابق الكلمة الإنجليزية مع معناها: Audience", options: [
-        { en: "a) Audience = جمهور", ar: "أ) جمهور", correct: true },
-        { en: "b) Crucial = حاسم", ar: "ب) حاسم", correct: false },
-        { en: "c) Productivity = انتاجية", ar: "ج) انتاجية", correct: false },
-        { en: "d) Efficiently = بكفاءة", ar: "د) بكفاءة", correct: false }
+        { en: "a) جمهور (Audience)", ar: "جمهور", correct: true }, { en: "b) بكفاءة (Efficiently)", ar: "بكفاءة", correct: false }
     ]},
     { q: "Fill in the blank: A Person who protects networks from hackers is a ……………. Expert.", arQ: "املأ الفراغ: الشخص الذي يحمي الشبكات من المتسللين هو خبير …………….", options: [
-        { en: "a) Cybersecurity", ar: "أ) الأمن السيبراني", correct: true },
-        { en: "b) software developer", ar: "ب) مطور برامج", correct: false },
-        { en: "c) hardware", ar: "ج) أجهزة", correct: false },
-        { en: "d) waiter", ar: "د) نادل", correct: false }
+        { en: "a) Cybersecurity", ar: "الأمن السيبراني", correct: true }, { en: "b) software developer", ar: "مطور برامج", correct: false }
     ]},
     { q: "Fill in the blank: Someone who writes code is a software ……………..", arQ: "املأ الفراغ: الشخص الذي يكتب الكود هو …………….. برامج.", options: [
-        { en: "a) developer", ar: "أ) مطور", correct: true },
-        { en: "b) Cybersecurity", ar: "ب) الأمن السيبراني", correct: false },
-        { en: "c) hacker", ar: "ج) مخترق", correct: false },
-        { en: "d) administrator", ar: "د) مسؤول", correct: false }
+        { en: "a) developer", ar: "مطور", correct: true }, { en: "b) Cybersecurity", ar: "الأمن السيبراني", correct: false }
     ]},
-    { q: "State whether this sentence is True or False: IoT devices don’t share data.", arQ: "حدد ما إذا كانت هذه الجملة صحيحة أم خاطئة: أجهزة إنترنت الأشياء (IoT) لا تشارك البيانات.", options: [
-        { en: "a) False", ar: "أ) خطأ", correct: true },
-        { en: "b) True", ar: "ب) صح", correct: false }
+    { q: "State whether True or False: IoT devices don’t share data.", arQ: "صح أم خطأ: أجهزة إنترنت الأشياء (IoT) لا تشارك البيانات.", options: [
+        { en: "a) False", ar: "خطأ", correct: true }, { en: "b) True", ar: "صح", correct: false }
     ]},
-    { q: "State whether this sentence is True or False: IT specialists help devices communicate.", arQ: "حدد ما إذا كانت هذه الجملة صحيحة أم خاطئة: يساعد متخصصو تكنولوجيا المعلومات الأجهزة على التواصل.", options: [
-        { en: "a) True", ar: "أ) صح", correct: true },
-        { en: "b) False", ar: "ب) خطأ", correct: false }
+    { q: "State whether True or False: IT specialists help devices communicate.", arQ: "صح أم خطأ: يساعد متخصصو تكنولوجيا المعلومات الأجهزة على التواصل.", options: [
+        { en: "a) True", ar: "صح", correct: true }, { en: "b) False", ar: "خطأ", correct: false }
     ]},
-    { q: "State whether this sentence is True or False: One use of AI in IT is painting pictures.", arQ: "حدد ما إذا كانت هذه الجملة صحيحة أم خاطئة: أحد استخدامات الذكاء الاصطناعي في تكنولوجيا المعلومات هو رسم الصور.", options: [
-        { en: "a) False", ar: "أ) خطأ", correct: true },
-        { en: "b) True", ar: "ب) صح", correct: false }
+    { q: "State whether True or False: One use of AI in IT is painting pictures.", arQ: "صح أم خطأ: أحد استخدامات الذكاء الاصطناعي في تكنولوجيا المعلومات هو رسم الصور.", options: [
+        { en: "a) False", ar: "خطأ", correct: true }, { en: "b) True", ar: "صح", correct: false }
     ]}
 ];
 
@@ -223,7 +320,6 @@ window.checkAnswer = function(element, qIndex, oIndex) {
     const qObj = questions[qIndex];
     const isCorrect = qObj.options[oIndex].correct;
     
-    // Disable all options
     Array.from(parent.children).forEach(child => {
         child.style.pointerEvents = 'none';
         child.style.opacity = '0.7';
