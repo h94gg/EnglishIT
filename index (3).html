@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deadlock MCQ Quiz</title>
+<style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 15px; background: #0F172A; direction: ltr; }
+    .container { max-width: 800px; margin: auto; padding-bottom: 100px; }
+    #scoreBox { background: linear-gradient(135deg, #0072ff, #00c6ff); color: white; padding: 15px; text-align: center; font-size: 20px; position: sticky; top: 10px; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px;border-bottom-left-radius: 20px; border-top-right-radius: 20px; }
+    .question-card { background: white; padding: 20px; margin-bottom: 20px; box-shadow: 12px 12px 20px -10px rgba(0, 198, 255, 0.7), -12px 12px 20px -10px rgba(0, 114, 255, 0.7), 0px 20px 30px -10px rgba(0, 114, 255, 0.4);border-bottom-left-radius: 20px; border-top-right-radius: 20px;}
+    .q-text { font-size: 18px; font-weight: 600; color: #1c1e21; margin-bottom: 15px; }
+    .translate-btn { background: #34a853; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 10px; }
+    .translation-area { display: none; background: #e8f5e9; padding: 10px; border-radius: 8px; margin-bottom: 15px; direction: rtl; text-align: right; border-right: 4px solid #34a853; }
+    .option { width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #dadce0; border-radius: 8px; background: #fff; text-align: left; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; }
+    .option:hover { background: #f8f9fa; border-color: #1a73e8; }
+    .ar-opt { display: none; font-size: 14px; color: #5f6368; margin-top: 4px; direction: rtl; text-align: right; }
+    .correct { background: #d4edda !important; border-color: #28a745 !important; }
+    .wrong { background: #f8d7da !important; border-color: #dc3545 !important; }
+    .result-msg { margin-top: 15px; font-weight: bold; }
+    h2 { text-align: center; color: #1a73e8; }
+    .footer { position: fixed; bottom: 0; left: 0; width: 100%; background: linear-gradient(135deg, #0072ff, #00c6ff); color: white; text-align: center; padding: 12px; border-top-left-radius: 20px; border-top-right-radius: 20px; }
+    .footer a { text-decoration: none; color: white; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div id="scoreBox">النتيجة: 0 / 40</div>
+    <h2>(Deadlocks)</h2>
+
+    <div id="quiz-container">
+        </div>
+</div>
+
+<div class="footer">
+    <a href="https://www.instagram.com/h94g/" target="_blank"> Developed by حيدر الخفاجي</a>
+</div>
+
+<script>
+const questions = [
+    { q: "Which of the following condition is required for a deadlock to be possible?", arQ: "أي من الشروط التالية مطلوبة لاحتمال حدوث حالة الجمود (deadlock)؟", options: [
+        { en: "a) mutual exclusion", ar: "أ) الاستبعاد المتبادل", correct: false },
+        { en: "b) a process may hold allocated resources while awaiting assignment of other resources", ar: "ب) قد تحتفظ العملية بالموارد المخصصة أثناء انتظار تخصيص موارد أخرى", correct: false },
+        { en: "c) no resource can be forcibly removed from a process holding it", ar: "ج) لا يمكن سحب المورد بالقوة من العملية التي تحتفظ به", correct: false },
+        { en: "d) all of the mentioned", ar: "د) جميع ما ذكر", correct: true }
+    ]},
+    { q: "A system is in the safe state if", arQ: "يكون النظام في حالة آمنة إذا", options: [
+        { en: "a) the system can allocate resources to each process in some order and still avoid a deadlock", ar: "أ) يمكن للنظام تخصيص موارد لكل عملية بترتيب معين مع تجنب الجمود", correct: false },
+        { en: "b) there exist a safe sequence", ar: "ب) يوجد تسلسل آمن", correct: false },
+        { en: "c) all of the mentioned", ar: "ج) جميع ما ذكر", correct: true },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "The circular wait condition can be prevented by", arQ: "يمكن منع شرط الانتظار الدائري عن طريق", options: [
+        { en: "a) defining a linear ordering of resource types", ar: "أ) تحديد ترتيب خطي لأنواع الموارد", correct: true },
+        { en: "b) using thread", ar: "ب) استخدام الخيوط (threads)", correct: false },
+        { en: "c) using pipes", ar: "ج) استخدام الأنابيب (pipes)", correct: false },
+        { en: "d) all of the mentioned", ar: "د) جميع ما ذكر", correct: false }
+    ]},
+    { q: "Which one of the following is the deadlock avoidance algorithm?", arQ: "أي مما يلي هو خوارزمية تجنب الجمود؟", options: [
+        { en: "a) banker's algorithm", ar: "أ) خوارزمية المصرفي (Banker's algorithm)", correct: true },
+        { en: "b) round-robin algorithm", ar: "ب) خوارزمية راوند روبن", correct: false },
+        { en: "c) elevator algorithm", ar: "ج) خوارزمية المصعد", correct: false },
+        { en: "d) karn's algorithm", ar: "د) خوارزمية كارن", correct: false }
+    ]},
+    { q: "What is the drawback of banker's algorithm?", arQ: "ما هو عيب خوارزمية المصرفي؟", options: [
+        { en: "a) in advance processes rarely know how much resource they will need", ar: "أ) نادراً ما تعرف العمليات مسبقاً مقدار الموارد التي ستحتاجها", correct: false },
+        { en: "b) the number of processes changes as time progresses", ar: "ب) يتغير عدد العمليات بمرور الوقت", correct: false },
+        { en: "c) resource once available can disappear", ar: "ج) المورد المتاح يمكن أن يختفي", correct: false },
+        { en: "d) all of the mentioned", ar: "د) جميع ما ذكر", correct: true }
+    ]},
+    { q: "For an effective operating system, when to check for deadlock?", arQ: "بالنسبة لنظام تشغيل فعال، متى يجب التحقق من حدوث حالة جمود؟", options: [
+        { en: "a) every time a resource request is made", ar: "أ) في كل مرة يتم فيها طلب مورد", correct: false },
+        { en: "b) at fixed time intervals", ar: "ب) على فترات زمنية ثابتة", correct: false },
+        { en: "c) every time a resource request is made at fixed time intervals", ar: "ج) في كل مرة يتم فيها طلب مورد أو على فترات زمنية ثابتة", correct: true },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "Which one of the following is a visual (mathematical) way to determine the deadlock occurrence?", arQ: "أي مما يلي هو طريقة بصرية (رياضية) لتحديد حدوث حالة الجمود؟", options: [
+        { en: "a) resource allocation graph", ar: "أ) رسم بياني لتخصيص الموارد", correct: true },
+        { en: "b) starvation graph", ar: "ب) رسم بياني للمجاعة", correct: false },
+        { en: "c) inversion graph", ar: "ج) رسم بياني للانعكاس", correct: false },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "To avoid deadlock", arQ: "لتجنب حالة الجمود", options: [
+        { en: "a) there must be a fixed number of resources to allocate", ar: "أ) يجب أن يكون هناك عدد ثابت من الموارد للتخصيص", correct: true },
+        { en: "b) resource allocation must be done only once", ar: "ب) يجب أن يتم تخصيص الموارد مرة واحدة فقط", correct: false },
+        { en: "c) all deadlocked processes must be aborted", ar: "ج) يجب إحباط جميع العمليات المتوقفة", correct: false },
+        { en: "d) inversion technique can be used", ar: "د) يمكن استخدام تقنية الانعكاس", correct: false }
+    ]},
+    { q: "The wait-for graph is a deadlock detection algorithm that is applicable when", arQ: "الرسم البياني للانتظار (wait-for graph) هو خوارزمية لاكتشاف الجمود تنطبق عندما", options: [
+        { en: "a) all resources have a single instance", ar: "أ) جميع الموارد لها نسخة (مثيل) واحدة", correct: true },
+        { en: "b) all resources have multiple instances", ar: "ب) جميع الموارد لها نسخ متعددة", correct: false },
+        { en: "c) all resources have a single & multiple instances", ar: "ج) جميع الموارد لها نسخ مفردة ومتعددة", correct: false },
+        { en: "d) all of the mentioned", ar: "د) جميع ما ذكر", correct: false }
+    ]},
+    { q: "An edge from process Pi to Pj in a wait for graph indicates that", arQ: "الخط (edge) من العملية Pi إلى Pj في الرسم البياني للانتظار يشير إلى أن", options: [
+        { en: "a) Pi is waiting for Pj to release a resource that Pi needs", ar: "أ) Pi تنتظر Pj لتحرير مورد تحتاجه Pi", correct: true },
+        { en: "b) Pj is waiting for Pi to release a resource that Pj needs", ar: "ب) Pj تنتظر Pi لتحرير مورد تحتاجه Pj", correct: false },
+        { en: "c) Pi is waiting for Pj to leave the system", ar: "ج) Pi تنتظر Pj لمغادرة النظام", correct: false },
+        { en: "d) Pj is waiting for Pi to leave the system", ar: "د) Pj تنتظر Pi لمغادرة النظام", correct: false }
+    ]},
+    { q: "If the wait for graph contains a cycle", arQ: "إذا كان الرسم البياني للانتظار يحتوي على دورة (cycle)", options: [
+        { en: "a) then a deadlock does not exist", ar: "أ) إذن لا يوجد حالة جمود", correct: false },
+        { en: "b) then a deadlock exists", ar: "ب) إذن توجد حالة جمود", correct: true },
+        { en: "c) then the system is in a safe state", ar: "ج) إذن النظام في حالة آمنة", correct: false },
+        { en: "d) either deadlock exists or system is in a safe state", ar: "د) إما أن حالة الجمود موجودة أو أن النظام في حالة آمنة", correct: false }
+    ]},
+    { q: "If deadlocks occur frequently, the detection algorithm must be invoked", arQ: "إذا حدثت حالات الجمود بشكل متكرر، يجب استدعاء خوارزمية الاكتشاف", options: [
+        { en: "a) rarely", ar: "أ) نادراً", correct: false },
+        { en: "b) frequently", ar: "ب) بشكل متكرر", correct: true },
+        { en: "c) rarely & frequently", ar: "ج) نادراً وبشكل متكرر", correct: false },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "What is the disadvantage of invoking the detection algorithm for every request?", arQ: "ما هو عيب استدعاء خوارزمية الاكتشاف لكل طلب؟", options: [
+        { en: "a) overhead of the detection algorithm due to consumption of memory", ar: "أ) عبء خوارزمية الاكتشاف بسبب استهلاك الذاكرة", correct: false },
+        { en: "b) excessive time consumed in the request to be allocated memory", ar: "ب) الوقت الزائد المستهلك في الطلب ليتم تخصيص الذاكرة", correct: false },
+        { en: "c) considerable overhead in computation time", ar: "ج) عبء كبير في وقت الحساب (المعالجة)", correct: true },
+        { en: "d) all of the mentioned", ar: "د) جميع ما ذكر", correct: false }
+    ]},
+    { q: "A deadlock eventually cripples system throughput and will cause the CPU utilization to", arQ: "حالة الجمود في النهاية تشل إنتاجية النظام وستتسبب في جعل استخدام وحدة المعالجة المركزية (CPU)", options: [
+        { en: "a) increase", ar: "أ) يزداد", correct: false },
+        { en: "b) drop", ar: "ب) ينخفض", correct: true },
+        { en: "c) stay still", "ar": "ج) يبقى ثابتاً", correct: false },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "Every time a request for allocation cannot be granted immediately, the detection algorithm is invoked. This will help identify", arQ: "في كل مرة لا يمكن فيها منح طلب التخصيص على الفور، يتم استدعاء خوارزمية الاكتشاف. هذا سيساعد في تحديد", options: [
+        { en: "a) the set of processes that have been deadlocked", ar: "أ) مجموعة العمليات التي دخلت في حالة جمود", correct: true },
+        { en: "b) the set of processes in the deadlock queue", ar: "ب) مجموعة العمليات في طابور الجمود", correct: false },
+        { en: "c) the specific process that caused the deadlock", ar: "ج) العملية المحددة التي تسببت في حالة الجمود", correct: false },
+        { en: "d) all of the mentioned", ar: "د) جميع ما ذكر", correct: false }
+    ]},
+    { q: "A computer system has 6 tape drives, with 'n' processes competing for them. Each process may need 3 tape drives. The maximum value of 'n' for which the system is guaranteed to be deadlock free is?", arQ: "نظام كمبيوتر يحتوي على 6 محركات أقراص، مع تنافس 'n' من العمليات عليها. قد تحتاج كل عملية إلى 3 محركات. ما هو الحد الأقصى لقيمة 'n' الذي يضمن أن النظام خالي من حالات الجمود؟", options: [
+        { en: "a) 2", ar: "أ) 2", correct: true },
+        { en: "b) 3", ar: "ب) 3", correct: false },
+        { en: "c) 4", ar: "ج) 4", correct: false },
+        { en: "d) 1", ar: "د) 1", correct: false }
+    ]},
+    { q: "A system has 3 processes sharing 4 resources. If each process needs a maximum of 2 units then, deadlock", arQ: "نظام يحتوي على 3 عمليات تتشارك 4 موارد. إذا كانت كل عملية تحتاج كحد أقصى إلى وحدتين، فإن حالة الجمود", options: [
+        { en: "a) can never occur", ar: "أ) لا يمكن أن تحدث أبدًا", correct: true },
+        { en: "b) may occur", ar: "ب) قد تحدث", correct: false },
+        { en: "c) has to occur", ar: "ج) يجب أن تحدث", correct: false },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "'m' processes share 'n' resources of the same type. The maximum need of each process doesn't exceed 'n' and the sum of all their maximum needs is always less than m+n. In this setup, deadlock", arQ: "تتشارك عمليات 'm' في موارد 'n' من نفس النوع. الحاجة القصوى لكل عملية لا تتجاوز 'n' ومجموع احتياجاتها القصوى دائمًا أقل من m+n. في هذا الإعداد، فإن حالة الجمود", options: [
+        { en: "a) can never occur", ar: "أ) لا يمكن أن تحدث أبدًا", correct: true },
+        { en: "b) may occur", ar: "ب) قد تحدث", correct: false },
+        { en: "c) has to occur", ar: "ج) يجب أن تحدث", correct: false },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "A deadlock can be broken by", arQ: "يمكن كسر حالة الجمود عن طريق", options: [
+        { en: "a) abort one or more processes to break the circular wait", ar: "أ) إحباط عملية أو أكثر لكسر الانتظار الدائري", correct: true },
+        { en: "b) abort all the process in the system", ar: "ب) إحباط جميع العمليات في النظام", correct: false },
+        { en: "c) preempt all resources from all processes", ar: "ج) سحب (استباق) جميع الموارد من جميع العمليات", correct: false },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "The two ways of aborting processes and eliminating deadlocks are", arQ: "الطريقتان لإحباط العمليات والقضاء على حالات الجمود هما", options: [
+        { en: "a) Abort all deadlocked processes", ar: "أ) إحباط جميع العمليات المتوقفة (في حالة جمود)", correct: false },
+        { en: "b) Abort all processes", ar: "ب) إحباط جميع العمليات", correct: false },
+        { en: "c) Abort one process at a time until the deadlock cycle is eliminated", ar: "ج) إحباط عملية واحدة في كل مرة حتى يتم القضاء على دورة الجمود", correct: true },
+        { en: "d) All of the mentioned", ar: "د) جميع ما ذكر", correct: false }
+    ]},
+    { q: "Those processes should be aborted on occurrence of a deadlock, the termination of which?", arQ: "تلك العمليات يجب إحباطها عند حدوث حالة جمود، والتي يكون إنهاؤها؟", options: [
+        { en: "a) is more time consuming", ar: "أ) يستغرق وقتاً أطول", correct: false },
+        { en: "b) incurs minimum cost", ar: "ب) يتكبد أقل تكلفة", correct: true },
+        { en: "c) safety is not hampered", ar: "ج) لا يعيق السلامة", correct: false },
+        { en: "d) all of the mentioned", ar: "د) جميع ما ذكر", correct: false }
+    ]},
+    { q: "The process to be aborted is chosen on the basis of the following factors?", arQ: "يتم اختيار العملية التي سيتم إحباطها على أساس العامل التالية Ly؟", options: [
+        { en: "a) priority of the process", ar: "أ) أولوية العملية", correct: false },
+        { en: "b) process is interactive or batch", ar: "ب) ما إذا كانت العملية تفاعلية أو دفعية", correct: false },
+        { en: "c) how long the process has computed", ar: "ج) المدة التي استغرقتها العملية في الحساب", correct: false },
+        { en: "d) all of the mentioned", ar: "د) جميع ما ذكر", correct: true }
+    ]},
+    { q: "Cost factors for process termination include", arQ: "عوامل التكلفة لإنهاء العملية تشمل", options: [
+        { en: "a) Number of resources the deadlock process is not holding", ar: "أ) عدد الموارد التي لا تحتفظ بها العملية المتوقفة", correct: false },
+        { en: "b) CPU utilization at the time of deadlock", ar: "ب) استخدام وحدة المعالجة المركزية وقت حدوث الجمود", correct: false },
+        { en: "c) Amount of time a deadlocked process has thus far consumed during its execution", ar: "ج) مقدار الوقت الذي استهلكته العملية المتوقفة حتى الآن أثناء تنفيذها", correct: true },
+        { en: "d) All of the mentioned", ar: "د) جميع ما ذكر", correct: false }
+    ]},
+    { q: "A state is safe, if", arQ: "تكون الحالة آمنة، إذا", options: [
+        { en: "a) the system does not crash due to deadlock occurrence", ar: "أ) النظام لا ينهار بسبب حدوث حالة الجمود", correct: false },
+        { en: "b) the system can allocate resources to each process in some order and still avoid a deadlock", ar: "ب) يمكن للنظام تخصيص الموارد لكل عملية بترتيب معين مع الاستمرار في تجنب الجمود", correct: true },
+        { en: "c) the state keeps the system protected and safe", ar: "ج) الحالة تحافظ على النظام محمياً وآمناً", correct: false },
+        { en: "d) all of the mentioned", ar: "د) جميع ما ذكر", correct: false }
+    ]},
+    { q: "A system is in a safe state only if there exists a", arQ: "يكون النظام في حالة آمنة فقط إذا كان يوجد", options: [
+        { en: "a) safe allocation", ar: "أ) تخصيص آمن", correct: false },
+        { en: "b) safe resource", ar: "ب) مورد آمن", correct: false },
+        { en: "c) safe sequence", ar: "ج) تسلسل آمن", correct: true },
+        { en: "d) all of the mentioned", ar: "د) جميع ما ذكر", correct: false }
+    ]},
+    { q: "All unsafe states are", arQ: "جميع الحالات غير الآمنة هي", options: [
+        { en: "a) deadlocks", ar: "أ) حالات جمود", correct: false },
+        { en: "b) not deadlocks", ar: "ب) ليست حالات جمود بالضرورة", correct: true },
+        { en: "c) fatal", ar: "ج) مميتة", correct: false },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "A system has 12 magnetic tape drives and 3 processes: P0, P1, and P2. Process P0 requires 10 tape drives, P1 requires 4 and P2 requires 9 tape drives.<br><br>Maximum needs (process-wise: P0 through P2 top to bottom):<br>10<br>4<br>9<br><br>Currently allocated (process-wise):<br>5<br>2<br>2<br><br>Which of the following sequence is a safe sequence?", arQ: "نظام يحتوي على 12 محرك أقراص مغناطيسية و 3 عمليات: P0، P1، و P2. العملية P0 تتطلب 10 محركات، P1 تتطلب 4 و P2 تتطلب 9.<br><br>الاحتياجات القصوى (لكل عملية: P0 إلى P2 من أعلى لأسفل):<br>10<br>4<br>9<br><br>المخصص حالياً (لكل عملية):<br>5<br>2<br>2<br><br>أي من التسلسلات التالية يعتبر تسلسلاً آمناً؟", options: [
+        { en: "a) P0, P1, P2", ar: "أ) P0, P1, P2", correct: false },
+        { en: "b) P1, P2, P0", ar: "ب) P1, P2, P0", correct: false },
+        { en: "c) P2, P0, P1", ar: "ج) P2, P0, P1", correct: false },
+        { en: "d) P1, P0, P2", ar: "د) P1, P0, P2", correct: true }
+    ]},
+    { q: "If no cycle exists in the resource allocation graph", arQ: "إذا لم توجد دورة (cycle) في الرسم البياني لتخصيص الموارد", options: [
+        { en: "a) then the system will not be in a safe state", ar: "أ) إذن لن يكون النظام في حالة آمنة", correct: false },
+        { en: "b) then the system will be in a safe state", ar: "ب) إذن سيكون النظام في حالة آمنة", correct: true },
+        { en: "c) all of the mentioned", ar: "ج) جميع ما ذكر", correct: false },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "The resource allocation graph is not applicable to a resource allocation system", arQ: "الرسم البياني لتخصيص الموارد لا ينطبق على نظام تخصيص الموارد", options: [
+        { en: "a) with multiple instances of each resource type", ar: "أ) ذي النسخ (المثيلات) المتعددة لكل نوع مورد", correct: true },
+        { en: "b) with a single instance of each resource type", ar: "ب) ذي النسخة الواحدة لكل نوع مورد", correct: false },
+        { en: "c) single & multiple instances of each resource type", ar: "ج) ذي النسخ المفردة والمتعددة لكل نوع مورد", correct: false },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "The Banker's algorithm is ______ than the resource allocation graph algorithm.", arQ: "خوارزمية المصرفي هي أقل كفاءة من خوارزمية الرسم البياني لتخصيص الموارد.", options: [
+        { en: "a) less efficient", ar: "أ) أقل كفاءة", correct: true },
+        { en: "b) more efficient", ar: "ب) أكثر كفاءة", correct: false },
+        { en: "c) equal", ar: "ج) مساوية", correct: false },
+        { en: "d) none of the mentioned", ar: "د) لا شيء مما ذكر", correct: false }
+    ]},
+    { q: "The data structures available in the Banker's algorithm are", arQ: "هياكل البيانات المتاحة في خوارزمية المصرفي هي", options: [
+        { en: "a) Available", ar: "أ) المتاح (Available)", correct: false },
+        { en: "b) Need", "ar": "ب) الحاجة (Need)", correct: false },
+        { en: "c) Allocation", ar: "ج) التخصيص (Allocation)", correct: false },
+        { en: "d) All of the mentioned", ar: "د) جميع ما ذكر", correct: true }
+    ]},
+    { q: "The content of the matrix Need is", arQ: "محتوى مصفوفة الحاجة (Need) هو", options: [
+        { en: "a) Allocation - Available", ar: "أ) التخصيص - المتاح", correct: false },
+        { en: "b) Max - Available", ar: "ب) الحد الأقصى - المتاح", correct: false },
+        { en: "c) Max - Allocation", ar: "ج) الحد الأقصى - التخصيص", correct: true },
+        { en: "d) Allocation - Max", ar: "د) التخصيص - الحد الأقصى", correct: false }
+    ]},
+    { q: "A system with 5 processes P0 through P4 and three resource types A, B, C have A with 10 instances, B with 5 instances, and C with 7 instances. At time t0, the following snapshot has been taken:<br><br>Allocation: P0(0 1 0), P1(2 0 0), P2(3 0 2), P3(2 1 1), P4(0 0 2)<br>MAX: P0(7 5 3), P1(3 2 2), P2(9 0 2), P3(2 2 2), P4(4 3 3)<br>Available: (3 3 2)<br><br>The sequence &lt;P1, P3, P4, P2, P0&gt; leads the system to", arQ: "نظام بـ 5 عمليات P0 إلى P4 وثلاثة أنواع موارد A بـ 10 نسخ، B بـ 5 نسخ، C بـ 7 نسخ. في الوقت t0 تم أخذ اللقطة التالية:<br><br>المخصص: P0(0 1 0), P1(2 0 0), P2(3 0 2), P3(2 1 1), P4(0 0 2)<br>الحد الأقصى: P0(7 5 3), P1(3 2 2), P2(9 0 2), P3(2 2 2), P4(4 3 3)<br>المتاح: (3 3 2)<br><br>التسلسل &lt;P1, P3, P4, P2, P0&gt; يقود النظام إلى", options: [
+        { en: "a) an unsafe state", ar: "أ) حالة غير آمنة", correct: false },
+        { en: "b) a safe state", ar: "ب) حالة آمنة", correct: true },
+        { en: "c) a protected state", ar: "ج) حالة محمية", correct: false },
+        { en: "d) a deadlock", ar: "د) حالة جمود", correct: false }
+    ]},
+    { q: "At least one resource must be held in a nonsharable mode; that is, only one process at a time can use the resource. If another process requests that resource, the requesting process must be delayed until the resource has been released. This condition for deadlock is refered to as :", arQ: "يجب الاحتفاظ بمورد واحد على الأقل في وضع غير قابل للمشاركة؛ أي أنه يمكن لعملية واحدة فقط في كل مرة استخدام المورد. إذا طلبت عملية أخرى ذلك المورد، فيجب تأخير العملية الطالبة حتى يتم تحرير المورد. يُشار إلى هذا الشرط لحالة الجمود باسم:", options: [
+        { en: "A. Mutual exclusion", ar: "أ. الاستبعاد المتبادل", correct: true },
+        { en: "B. Hold and wait.", ar: "ب. الاحتفاظ والانتظار", correct: false },
+        { en: "C. No preemption", ar: "ج. عدم الاستباق", correct: false },
+        { en: "D. Circular wait", ar: "د. الانتظار الدائري", correct: false }
+    ]},
+    { q: "A process must be holding at least one resource and waiting to acquire additional resources that are currently being held by other processes. This condition for deadlock is refered to as :", arQ: "يجب أن تحتفظ العملية بمورد واحد على الأقل وتنتظر للحصول على موارد إضافية تحتفظ بها حاليًا عمليات أخرى. يُشار إلى هذا الشرط لحالة الجمود باسم:", options: [
+        { en: "A. Mutual exclusion", ar: "أ. الاستبعاد المتبادل", correct: false },
+        { en: "B. Hold and wait.", ar: "ب. الاحتفاظ والانتظار", correct: true },
+        { en: "C. No preemption", ar: "ج. عدم الاستباق", correct: false },
+        { en: "D. Circular wait", ar: "د. الانتظار الدائري", correct: false }
+    ]},
+    { q: "Resources cannot be preempted; that is, a resource can be released only voluntarily by the process holding it, after that process has completed its task. This condition for deadlock is refered to as :", arQ: "لا يمكن استباق (سحب) الموارد؛ أي أنه لا يمكن تحرير المورد إلا طواعية بواسطة العملية التي تحتفظ به، بعد أن تكمل تلك العملية مهمتها. يُشار إلى هذا الشرط لحالة الجمود باسم:", options: [
+        { en: "A. Mutual exclusion", ar: "أ. الاستبعاد المتبادل", correct: false },
+        { en: "B. Hold and wait.", ar: "ب. الاحتفاظ والانتظار", correct: false },
+        { en: "C. No preemption", ar: "ج. عدم الاستباق", correct: true },
+        { en: "D. Circular wait.", ar: "د. الانتظار الدائري", correct: false }
+    ]},
+    { q: "A set {P0, P1, ..., Pn} of waiting processes must exist such that P0 is waiting for a resource held by P1, P1 is waiting for a resource held by P2, ..., Pn-1 is waiting for a resource held by Pn, and Pn is waiting for a resource held by P0. This condition for deadlock is refered to as :", arQ: "يجب أن توجد مجموعة {P0, P1, ..., Pn} من العمليات المنتظرة بحيث تنتظر P0 مورداً تحتفظ به P1، وتنتظر P1 مورداً تحتفظ به P2، ... وتنتظر Pn-1 مورداً تحتفظ به Pn، وتنتظر Pn مورداً تحتفظ به P0. يُشار إلى هذا الشرط لحالة الجمود باسم:", options: [
+        { en: "A. Mutual exclusion", ar: "أ. الاستبعاد المتبادل", correct: false },
+        { en: "B. Hold and wait.", ar: "ب. الاحتفاظ والانتظار", correct: false },
+        { en: "C. No preemption", ar: "ج. عدم الاستباق", correct: false },
+        { en: "D. Circular wait.", ar: "د. الانتظار الدائري", correct: true }
+    ]},
+    { q: "Deadlocks can be described more precisely in terms of a directed graph called a", arQ: "يمكن وصف حالات الجمود بشكل أكثر دقة من خلال رسم بياني موجه يسمى", options: [
+        { en: "A. Bar graph", ar: "أ. رسم بياني شريطي", correct: false },
+        { en: "B. system resource-allocation graph", ar: "ب. رسم بياني لتخصيص موارد النظام", correct: true },
+        { en: "C. Pie charts", ar: "ج. مخططات دائرية", correct: false },
+        { en: "D. Line graphs", ar: "د. رسوم بيانية خطية", correct: false }
+    ]},
+    { q: "Which of the following statements is TRUE for dealing with the deadlock problem?\n1. We can use a protocol to prevent or avoid deadlocks, ensuring that the system will never enter a deadlocked state.\n2. We can allow the system to enter a deadlocked state, detect it, and recover.\n3. We can ignore the problem altogether and pretend that deadlocks never occur in the system.", arQ: "أي من العبارات التالية صحيحة للتعامل مع مشكلة الجمود:\n1. يمكننا استخدام بروتوكول لمنع أو تجنب حالات الجمود، مما يضمن عدم دخول النظام أبدًا في حالة جمود.\n2. يمكننا السماح للنظام بالدخول في حالة جمود، واكتشافها، والتعافي منها.\n3. يمكننا تجاهل المشكلة تمامًا والتظاهر بأن حالات الجمود لا تحدث أبدًا في النظام.", options: [
+        { en: "A. 1", ar: "أ. 1", correct: false },
+        { en: "B. 1,2", ar: "ب. 1,2", correct: false },
+        { en: "C. 1,2,3", ar: "ج. 1,2,3", correct: true },
+        { en: "D. None of the above", ar: "د. لا شيء مما سبق", correct: false }
+    ]},
+    { q: "To ensure that deadlocks never occur, the system can use\n1. deadlock prevention scheme\n2. deadlock-avoidance scheme\n3. deadlock-detection scheme\n4. deadlock-recovery scheme", arQ: "لضمان عدم حدوث حالات الجمود أبدًا، يمكن للنظام استخدام\n1. نظام منع الجمود\n2. نظام تجنب الجمود\n3. نظام اكتشاف الجمود\n4. نظام التعافي من الجمود", options: [
+        { en: "A. 1,2", ar: "أ. 1,2", correct: true },
+        { en: "B. 1,2,3", ar: "ب. 1,2,3", correct: false },
+        { en: "C. 3,4", ar: "ج. 3,4", correct: false },
+        { en: "D. 1,2,3,4", ar: "د. 1,2,3,4", correct: false }
+    ]}
+];
+
+let score = 0;
+const container = document.getElementById('quiz-container');
+
+function renderQuiz() {
+    questions.forEach((q, index) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.innerHTML = `
+            <button class="translate-btn" onclick="toggleTranslation(${index})">Translate / ترجمة</button>
+            <div id="trans-${index}" class="translation-area"><strong>السؤال:</strong> ${q.arQ}</div>
+            <div class="q-text">${index + 1}. ${q.q}</div>
+            <div id="options-${index}">
+                ${q.options.map((opt, optIdx) => `
+                    <button class="option" onclick="checkAnswer(${index}, ${optIdx}, this, ${opt.correct})">
+                        <span>${opt.en}</span>
+                        <span class="ar-opt">${opt.ar}</span>
+                    </button>
+                `).join('')}
+            </div>
+            <div id="result-${index}" class="result-msg"></div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+window.checkAnswer = function(qIdx, optIdx, btn, isCorrect) {
+    const parent = document.getElementById(`options-${qIdx}`);
+    if (parent.dataset.answered === "true") return;
+    parent.dataset.answered = "true";
+
+    const allOptions = parent.querySelectorAll('.option');
+    const resultMsg = document.getElementById(`result-${qIdx}`);
+    const correctOpt = questions[qIdx].options.find(o => o.correct);
+
+    allOptions.forEach(opt => {
+        opt.querySelector('.ar-opt').style.display = 'block';
+    });
+
+    if (isCorrect) {
+        score++;
+        btn.classList.add('correct');
+        resultMsg.innerHTML = `<div style="text-align: right; direction: rtl;"><span style="color: green; font-size: 16px;">✅ إجابة صحيحة!</span></div>`;
+    } else {
+        btn.classList.add('wrong');
+        allOptions.forEach(opt => {
+             if (opt.innerHTML.includes(correctOpt.en)) opt.classList.add('correct');
+        });
+        
+        resultMsg.innerHTML = `
+            <div style="direction: rtl; text-align: right; margin-bottom: 8px;">
+                <span style="color: red; font-weight: bold; font-size: 16px;">❌ إجابة خاطئة! الإجابة الصحيحة هي:</span>
+            </div>
+            <div style="background-color: #d4edda; color: #155724; padding: 12px; border-radius: 8px; border: 1px solid #c3e6cb; margin-top: 10px;">
+                <div style="direction: ltr; text-align: left; margin-bottom: 6px; font-size: 15px; border-bottom: 1px solid #b1dfbb; padding-bottom: 6px;">
+                    <strong>EN:</strong> ${correctOpt.en}
+                </div>
+                <div style="direction: rtl; text-align: right; font-size: 15px; padding-top: 6px;">
+                    <strong>AR:</strong> ${correctOpt.ar}
+                </div>
+            </div>
+        `;
+    }
+    document.getElementById('scoreBox').innerText = `النتيجة: ${score} / ${questions.length}`;
+};
+
+window.toggleTranslation = function(index) {
+    const area = document.getElementById(`trans-${index}`);
+    const optionsAr = document.querySelectorAll(`#options-${index} .ar-opt`);
+    
+    if (area.style.display === 'block') {
+        area.style.display = 'none';
+        optionsAr.forEach(o => o.style.display = 'none');
+    } else {
+        area.style.display = 'block';
+        optionsAr.forEach(o => o.style.display = 'block');
+    }
+};
+
+renderQuiz();
+</script>
+</body>
+</html>
