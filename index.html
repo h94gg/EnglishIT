@@ -5,22 +5,143 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IT Skills MCQ Quiz</title>
 <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 15px; background: #0F172A; direction: ltr; }
-    .container { max-width: 800px; margin: auto; padding-bottom: 100px; }
-    #scoreBox { background: linear-gradient(135deg, #0072ff, #00c6ff); color: white; padding: 15px; text-align: center; font-size: 20px; position: sticky; top: 10px; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px;border-bottom-left-radius: 20px; border-top-right-radius: 20px; }
-    .question-card { background: white; padding: 20px; margin-bottom: 20px; box-shadow: 12px 12px 20px -10px rgba(0, 198, 255, 0.7), -12px 12px 20px -10px rgba(0, 114, 255, 0.7), 0px 20px 30px -10px rgba(0, 114, 255, 0.4);border-bottom-left-radius: 20px; border-top-right-radius: 20px;}
-    .q-text { font-size: 18px; font-weight: 600; color: #1c1e21; margin-bottom: 15px; }
-    .translate-btn { background: #34a853; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 10px; }
-    .translation-area { display: none; background: #e8f5e9; padding: 10px; border-radius: 8px; margin-bottom: 15px; direction: rtl; text-align: right; border-right: 4px solid #34a853; }
-    .option { width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #dadce0; border-radius: 8px; background: #fff; text-align: left; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; }
-    .option:hover { background: #f8f9fa; border-color: #1a73e8; }
-    .ar-opt { display: none; font-size: 14px; color: #5f6368; margin-top: 4px; direction: rtl; text-align: right; }
+    /* إعدادات الصندوق المتجاوب */
+    * {
+        box-sizing: border-box;
+    }
+    
+    body { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        margin: 0; 
+        padding: 10px; 
+        background: #0F172A; 
+        direction: ltr; 
+    }
+    
+    .container { 
+        max-width: 800px; 
+        margin: 0 auto; 
+        padding-bottom: 80px; /* مساحة للفوتر */
+        padding-top: 10px;
+    }
+    
+    #scoreBox { 
+        background: linear-gradient(135deg, #0072ff, #00c6ff); 
+        color: white; 
+        padding: 15px; 
+        text-align: center; 
+        font-size: clamp(16px, 4vw, 20px); /* خط متجاوب */
+        position: sticky; 
+        top: 10px; 
+        z-index: 1000; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        margin-bottom: 20px;
+        border-bottom-left-radius: 20px; 
+        border-top-right-radius: 20px; 
+    }
+    
+    .question-card { 
+        background: white; 
+        padding: 20px; 
+        margin-bottom: 20px; 
+        box-shadow: 12px 12px 20px -10px rgba(0, 198, 255, 0.7), -12px 12px 20px -10px rgba(0, 114, 255, 0.7), 0px 20px 30px -10px rgba(0, 114, 255, 0.4);
+        border-bottom-left-radius: 20px; 
+        border-top-right-radius: 20px;
+    }
+    
+    .q-text { 
+        font-size: clamp(16px, 4.5vw, 18px); /* خط متجاوب */
+        font-weight: 600; 
+        color: #1c1e21; 
+        margin-bottom: 15px; 
+        line-height: 1.4;
+    }
+    
+    .translate-btn { 
+        background: #34a853; 
+        color: white; 
+        border: none; 
+        padding: 8px 12px; 
+        border-radius: 6px; 
+        cursor: pointer; 
+        font-size: clamp(12px, 3vw, 14px); 
+        margin-bottom: 12px; 
+        transition: 0.2s;
+    }
+    .translate-btn:hover { background: #2d9249; }
+    
+    .translation-area { 
+        display: none; 
+        background: #e8f5e9; 
+        padding: 12px; 
+        border-radius: 8px; 
+        margin-bottom: 15px; 
+        direction: rtl; 
+        text-align: right; 
+        border-right: 4px solid #34a853; 
+        font-size: clamp(14px, 4vw, 16px);
+    }
+    
+    .option { 
+        width: 100%; 
+        padding: 15px; /* مساحة أفضل للنقر في الهواتف */
+        margin: 8px 0; 
+        border: 2px solid #dadce0; 
+        border-radius: 8px; 
+        background: #fff; 
+        text-align: left; 
+        cursor: pointer; 
+        transition: 0.3s; 
+        display: flex; 
+        flex-direction: column; 
+        font-size: clamp(14px, 3.8vw, 16px);
+        word-wrap: break-word;
+    }
+    
+    .option:hover { 
+        background: #f8f9fa; 
+        border-color: #1a73e8; 
+    }
+    
+    .ar-opt { 
+        display: none; 
+        font-size: clamp(13px, 3.5vw, 15px); 
+        color: #5f6368; 
+        margin-top: 6px; 
+        direction: rtl; 
+        text-align: right; 
+    }
+    
     .correct { background: #d4edda !important; border-color: #28a745 !important; }
     .wrong { background: #f8d7da !important; border-color: #dc3545 !important; }
     .result-msg { margin-top: 15px; font-weight: bold; }
-    h2 { text-align: center; color: #1a73e8; }
-    .footer { position: fixed; bottom: 0; left: 0; width: 100%; background: linear-gradient(135deg, #0072ff, #00c6ff); color: white; text-align: center; padding: 12px; border-top-left-radius: 20px; border-top-right-radius: 20px; }
-    .footer a { text-decoration: none; color: white; }
+    
+    h2 { 
+        text-align: center; 
+        color: #1a73e8; 
+        font-size: clamp(20px, 5vw, 24px);
+    }
+    
+    .footer { 
+        position: fixed; 
+        bottom: 0; 
+        left: 0; 
+        width: 100%; 
+        background: linear-gradient(135deg, #0072ff, #00c6ff); 
+        color: white; 
+        text-align: center; 
+        padding: 12px; 
+        border-top-left-radius: 20px; 
+        border-top-right-radius: 20px; 
+        z-index: 1000;
+    }
+    .footer a { text-decoration: none; color: white; font-weight: bold; }
+
+    /* تعديلات الشاشات الصغيرة جداً */
+    @media (max-width: 400px) {
+        .question-card { padding: 15px; }
+        .option { padding: 12px; }
+    }
 </style>
 </head>
 <body>
@@ -340,13 +461,13 @@ window.checkAnswer = function(element, qIndex, oIndex) {
         
         resultMsg.innerHTML = `
             <div style="direction: rtl; text-align: right; margin-bottom: 8px;">
-                <span style="color: red; font-weight: bold; font-size: 16px;">❌ إجابة خاطئة! الإجابة الصحيحة هي:</span>
+                <span style="color: red; font-weight: bold; font-size: clamp(14px, 4vw, 16px);">❌ إجابة خاطئة! الإجابة الصحيحة هي:</span>
             </div>
             <div style="background-color: #d4edda; color: #155724; padding: 12px; border-radius: 8px; border: 1px solid #c3e6cb; margin-top: 10px;">
-                <div style="direction: ltr; text-align: left; margin-bottom: 6px; font-size: 15px; border-bottom: 1px solid #b1dfbb; padding-bottom: 6px;">
+                <div style="direction: ltr; text-align: left; margin-bottom: 6px; font-size: clamp(13px, 3.5vw, 15px); border-bottom: 1px solid #b1dfbb; padding-bottom: 6px;">
                     <strong>EN:</strong> ${correctOpt.en}
                 </div>
-                <div style="direction: rtl; text-align: right; font-size: 15px; padding-top: 6px;">
+                <div style="direction: rtl; text-align: right; font-size: clamp(13px, 3.5vw, 15px); padding-top: 6px;">
                     <strong>AR:</strong> ${correctOpt.ar}
                 </div>
             </div>
