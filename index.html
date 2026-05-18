@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Skills MCQ Quiz</title>
+<style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 15px; background: #0F172A; direction: ltr; }
+    .container { max-width: 800px; margin: auto; padding-bottom: 100px; }
+    #scoreBox { background: linear-gradient(135deg, #0072ff, #00c6ff); color: white; padding: 15px; text-align: center; font-size: 20px; position: sticky; top: 10px; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px;border-bottom-left-radius: 20px; border-top-right-radius: 20px; }
+    .question-card { background: white; padding: 20px; margin-bottom: 20px; box-shadow: 12px 12px 20px -10px rgba(0, 198, 255, 0.7), -12px 12px 20px -10px rgba(0, 114, 255, 0.7), 0px 20px 30px -10px rgba(0, 114, 255, 0.4);border-bottom-left-radius: 20px; border-top-right-radius: 20px;}
+    .q-text { font-size: 18px; font-weight: 600; color: #1c1e21; margin-bottom: 15px; }
+    .translate-btn { background: #34a853; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 10px; }
+    .translation-area { display: none; background: #e8f5e9; padding: 10px; border-radius: 8px; margin-bottom: 15px; direction: rtl; text-align: right; border-right: 4px solid #34a853; }
+    .option { width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #dadce0; border-radius: 8px; background: #fff; text-align: left; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; }
+    .option:hover { background: #f8f9fa; border-color: #1a73e8; }
+    .ar-opt { display: none; font-size: 14px; color: #5f6368; margin-top: 4px; direction: rtl; text-align: right; }
+    .correct { background: #d4edda !important; border-color: #28a745 !important; }
+    .wrong { background: #f8d7da !important; border-color: #dc3545 !important; }
+    .result-msg { margin-top: 15px; font-weight: bold; }
+    h2 { text-align: center; color: #1a73e8; }
+    .footer { position: fixed; bottom: 0; left: 0; width: 100%; background: linear-gradient(135deg, #0072ff, #00c6ff); color: white; text-align: center; padding: 12px; border-top-left-radius: 20px; border-top-right-radius: 20px; }
+    .footer a { text-decoration: none; color: white; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div id="scoreBox">النتيجة: 0 / 25</div>
+    <h2>(IT Skills & Vocabulary)</h2>
+
+    <div id="quiz-container">
+        </div>
+</div>
+
+<div class="footer">
+    <a href="https://www.instagram.com/h94g/" target="_blank"> Developed by حيدر الخفاجي</a>
+</div>
+
+<script>
+const questions = [
+    { q: "Which word is the odd one out: Web, poultry, password, surf?", arQ: "أي كلمة هي الشاذة أو الغريبة: Web, poultry, password, surf؟", options: [
+        { en: "Web", ar: "ويب", correct: false },
+        { en: "poultry", ar: "دواجن", correct: true },
+        { en: "password", ar: "كلمة مرور", correct: false },
+        { en: "surf", ar: "تصفح", correct: false }
+    ]},
+    { q: "Which word is the odd one out: say, go, generally, speak?", arQ: "أي كلمة هي الشاذة أو الغريبة: say, go, generally, speak؟", options: [
+        { en: "say", ar: "قل", correct: false },
+        { en: "go", ar: "اذهب", correct: false },
+        { en: "generally", ar: "عموماً", correct: true },
+        { en: "speak", ar: "تحدث", correct: false }
+    ]},
+    { q: "Which word is the odd one out: pollution, keyboard, environment, drainage?", arQ: "أي كلمة هي الشاذة أو الغريبة: pollution, keyboard, environment, drainage؟", options: [
+        { en: "pollution", ar: "تلوث", correct: false },
+        { en: "keyboard", ar: "لوحة مفاتيح", correct: true },
+        { en: "environment", ar: "بيئة", correct: false },
+        { en: "drainage", ar: "تصريف", correct: false }
+    ]},
+    { q: "Which word is the odd one out: studied, stay, cooked, went?", arQ: "أي كلمة هي الشاذة أو الغريبة: studied, stay, cooked, went؟", options: [
+        { en: "studied", ar: "درس", correct: false },
+        { en: "stay", ar: "يبقى", correct: true },
+        { en: "cooked", ar: "طبخ", correct: false },
+        { en: "went", ar: "ذهب", correct: false }
+    ]},
+    { q: "Which word is the odd one out: sewage, ventilation, toxins, bakery?", arQ: "أي كلمة هي الشاذة أو الغريبة: sewage, ventilation, toxins, bakery؟", options: [
+        { en: "sewage", ar: "مياه الصرف الصحي", correct: false },
+        { en: "ventilation", ar: "تهوية", correct: false },
+        { en: "toxins", ar: "سموم", correct: false },
+        { en: "bakery", ar: "مخبز", correct: true }
+    ]},
+    { q: "Which word is the odd one out: Iron, coal, available, Limestone?", arQ: "أي كلمة هي الشاذة أو الغريبة: Iron, coal, available, Limestone؟", options: [
+        { en: "Iron", ar: "حديد", correct: false },
+        { en: "coal", ar: "فحم", correct: false },
+        { en: "available", ar: "متاح", correct: true },
+        { en: "Limestone", ar: "حجر جيري", correct: false }
+    ]},
+    { q: "Which word is the odd one out: hard, easily, quickly, when?", arQ: "أي كلمة هي الشاذة أو الغريبة: hard, easily, quickly, when؟", options: [
+        { en: "hard", ar: "صعب", correct: false },
+        { en: "easily", ar: "بسهولة", correct: false },
+        { en: "quickly", ar: "بسرعة", correct: false },
+        { en: "when", ar: "متى", correct: true }
+    ]},
+    { q: "Which word is the odd one out: sensor, interface, actuator, waiter?", arQ: "أي كلمة هي الشاذة أو الغريبة: sensor, interface, actuator, waiter؟", options: [
+        { en: "sensor", ar: "مستشعر", correct: false },
+        { en: "interface", ar: "واجهة", correct: false },
+        { en: "actuator", ar: "مشغل", correct: false },
+        { en: "waiter", ar: "نادل", correct: true }
+    ]},
+    { q: "Which word is the odd one out: protocol, vegetables, poultry, dairy?", arQ: "أي كلمة هي الشاذة أو الغريبة: protocol, vegetables, poultry, dairy؟", options: [
+        { en: "protocol", ar: "بروتوكول", correct: true },
+        { en: "vegetables", ar: "خضروات", correct: false },
+        { en: "poultry", ar: "دواجن", correct: false },
+        { en: "dairy", ar: "منتجات الألبان", correct: false }
+    ]},
+    { q: "Which word is the odd one out: chat room, homepage, pollution, web?", arQ: "أي كلمة هي الشاذة أو الغريبة: chat room, homepage, pollution, web؟", options: [
+        { en: "chat room", ar: "غرفة دردشة", correct: false },
+        { en: "homepage", ar: "صفحة رئيسية", correct: false },
+        { en: "pollution", ar: "تلوث", correct: true },
+        { en: "web", ar: "ويب", correct: false }
+    ]},
+    { q: "Which word is the odd one out: browser, home page, surf, acid rain?", arQ: "أي كلمة هي الشاذة أو الغريبة: browser, home page, surf, acid rain؟", options: [
+        { en: "browser", ar: "متصفح", correct: false },
+        { en: "home page", ar: "صفحة رئيسية", correct: false },
+        { en: "surf", ar: "تصفح", correct: false },
+        { en: "acid rain", ar: "مطر حمضي", correct: true }
+    ]},
+    { q: "What do you do to improve your IT skills?", arQ: "ماذا تفعل لتحسين مهاراتك في تكنولوجيا المعلومات؟", options: [
+        { en: "I take courses, watch tutorials, practice daily, and read blogs.", ar: "أتابع دورات، أشاهد شروحات، أمارس يومياً، وأقرأ المدونات.", correct: true },
+        { en: "Because it helps in building a future career.", ar: "لأنه يساعد في بناء مستقبل مهني.", correct: false },
+        { en: "To apply what I learn.", ar: "لتطبيق ما أتعلمه.", correct: false },
+        { en: "On online forums.", ar: "في المنتديات عبر الإنترنت.", correct: false }
+    ]},
+    { q: "Why is improving IT skills important?", arQ: "لماذا يعتبر تحسين مهارات تكنولوجيا المعلومات مهماً؟", options: [
+        { en: "Because it helps in building a future career.", ar: "لأنه يساعد في بناء مستقبل مهني.", correct: true },
+        { en: "To apply what I learn.", ar: "لتطبيق ما أتعلمه.", correct: false },
+        { en: "On online forums.", ar: "في المنتديات عبر الإنترنت.", correct: false },
+        { en: "Programming, networking, & Cyber Security.", ar: "البرمجة والشبكات والأمن السيبراني.", correct: false }
+    ]},
+    { q: "What is the reason that you must try to work on small projects?", arQ: "ما هو السبب الذي يجعلك تحاول العمل على مشاريع صغيرة؟", options: [
+        { en: "To apply what I learn.", ar: "لتطبيق ما أتعلمه.", correct: true },
+        { en: "Because it helps in building a future career.", ar: "لأنه يساعد في بناء مستقبل مهني.", correct: false },
+        { en: "On online forums.", ar: "في المنتديات عبر الإنترنت.", correct: false },
+        { en: "I take courses, watch tutorials, practice daily.", ar: "أتابع دورات وأشاهد شروحات وأمارس يومياً.", correct: false }
+    ]},
+    { q: "Where do you ask questions to learn more in IT field?", arQ: "أين تطرح الأسئلة لمعرفة المزيد في مجال تكنولوجيا المعلومات؟", options: [
+        { en: "On online forums.", ar: "في المنتديات عبر الإنترنت.", correct: true },
+        { en: "In the bakery.", ar: "في المخبز.", correct: false },
+        { en: "To apply what I learn.", ar: "لتطبيق ما أتعلمه.", correct: false },
+        { en: "Because it helps in building a future career.", ar: "لأنه يساعد في بناء مستقبل مهني.", correct: false }
+    ]},
+    { q: "What topics must you study to improve your IT skills?", arQ: "ما هي المواضيع التي يجب أن تدرسها لتحسين مهاراتك في تكنولوجيا المعلومات؟", options: [
+        { en: "Programming, networking, & Cyber Security.", ar: "البرمجة والشبكات والأمن السيبراني.", correct: true },
+        { en: "Iron, coal, available, Limestone.", ar: "حديد، فحم، متاح، حجر جيري.", correct: false },
+        { en: "On online forums.", ar: "في المنتديات عبر الإنترنت.", correct: false },
+        { en: "To apply what I learn.", ar: "لتطبيق ما أتعلمه.", correct: false }
+    ]},
+    { q: "Match the English word with its meaning: Crucial", arQ: "طابق الكلمة الإنجليزية مع معناها: Crucial", options: [
+        { en: "حاسم (Crucial)", ar: "حاسم", correct: true },
+        { en: "انتاجية (Productivity)", ar: "انتاجية", correct: false },
+        { en: "بكفاءة (Efficiently)", ar: "بكفاءة", correct: false },
+        { en: "جمهور (Audience)", ar: "جمهور", correct: false }
+    ]},
+    { q: "Match the English word with its meaning: Productivity", arQ: "طابق الكلمة الإنجليزية مع معناها: Productivity", options: [
+        { en: "انتاجية (Productivity)", ar: "انتاجية", correct: true },
+        { en: "حاسم (Crucial)", ar: "حاسم", correct: false },
+        { en: "بكفاءة (Efficiently)", ar: "بكفاءة", correct: false },
+        { en: "جمهور (Audience)", ar: "جمهور", correct: false }
+    ]},
+    { q: "Match the English word with its meaning: Efficiently", arQ: "طابق الكلمة الإنجليزية مع معناها: Efficiently", options: [
+        { en: "بكفاءة (Efficiently)", ar: "بكفاءة", correct: true },
+        { en: "حاسم (Crucial)", ar: "حاسم", correct: false },
+        { en: "انتاجية (Productivity)", ar: "انتاجية", correct: false },
+        { en: "جمهور (Audience)", ar: "جمهور", correct: false }
+    ]},
+    { q: "Match the English word with its meaning: Audience", arQ: "طابق الكلمة الإنجليزية مع معناها: Audience", options: [
+        { en: "جمهور (Audience)", ar: "جمهور", correct: true },
+        { en: "حاسم (Crucial)", ar: "حاسم", correct: false },
+        { en: "انتاجية (Productivity)", ar: "انتاجية", correct: false },
+        { en: "بكفاءة (Efficiently)", ar: "بكفاءة", correct: false }
+    ]},
+    { q: "Fill in the blank: A Person who protects networks from hackers is a ……………. Expert.", arQ: "املأ الفراغ: الشخص الذي يحمي الشبكات من المتسللين هو خبير …………….", options: [
+        { en: "Cybersecurity", ar: "الأمن السيبراني", correct: true },
+        { en: "software developer", ar: "مطور برامج", correct: false },
+        { en: "hardware", ar: "أجهزة", correct: false },
+        { en: "waiter", ar: "نادل", correct: false }
+    ]},
+    { q: "Fill in the blank: Someone who writes code is a software ……………..", arQ: "املأ الفراغ: الشخص الذي يكتب الكود هو …………….. برامج.", options: [
+        { en: "developer", ar: "مطور", correct: true },
+        { en: "Cybersecurity", ar: "الأمن السيبراني", correct: false },
+        { en: "hacker", ar: "مخترق", correct: false },
+        { en: "administrator", ar: "مسؤول", correct: false }
+    ]},
+    { q: "State whether this sentence is True or False: IoT devices don’t share data.", arQ: "حدد ما إذا كانت هذه الجملة صحيحة أم خاطئة: أجهزة إنترنت الأشياء (IoT) لا تشارك البيانات.", options: [
+        { en: "False", ar: "خطأ", correct: true },
+        { en: "True", ar: "صح", correct: false }
+    ]},
+    { q: "State whether this sentence is True or False: IT specialists help devices communicate.", arQ: "حدد ما إذا كانت هذه الجملة صحيحة أم خاطئة: يساعد متخصصو تكنولوجيا المعلومات الأجهزة على التواصل.", options: [
+        { en: "True", ar: "صح", correct: true },
+        { en: "False", ar: "خطأ", correct: false }
+    ]},
+    { q: "State whether this sentence is True or False: One use of AI in IT is painting pictures.", arQ: "حدد ما إذا كانت هذه الجملة صحيحة أم خاطئة: أحد استخدامات الذكاء الاصطناعي في تكنولوجيا المعلومات هو رسم الصور.", options: [
+        { en: "False", ar: "خطأ", correct: true },
+        { en: "True", ar: "صح", correct: false }
+    ]}
+];
+
+let score = 0;
+
+window.onload = () => {
+    const container = document.getElementById('quiz-container');
+    questions.forEach((qObj, index) => {
+        let optionsHtml = '';
+        qObj.options.forEach((opt, oIndex) => {
+            optionsHtml += `
+                <div class="option" onclick="checkAnswer(this, ${index}, ${oIndex})">
+                    <strong>EN:</strong> ${opt.en}
+                    <div class="ar-opt"><strong>AR:</strong> ${opt.ar}</div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML += `
+            <div class="question-card">
+                <div class="q-text">Q${index + 1}: ${qObj.q}</div>
+                <button class="translate-btn" onclick="toggleTranslation(${index})">إظهار الترجمة (Show Translation)</button>
+                <div class="translation-area" id="trans-${index}">${qObj.arQ}</div>
+                <div id="options-${index}">
+                    ${optionsHtml}
+                </div>
+                <div id="result-${index}" class="result-msg"></div>
+            </div>
+        `;
+    });
+    document.getElementById('scoreBox').innerText = `النتيجة: 0 / ${questions.length}`;
+};
+
+window.checkAnswer = function(element, qIndex, oIndex) {
+    const parent = element.parentElement;
+    if (parent.getAttribute('data-answered') === 'true') return;
+    
+    parent.setAttribute('data-answered', 'true');
+    const qObj = questions[qIndex];
+    const isCorrect = qObj.options[oIndex].correct;
+    
+    // Disable all options
+    Array.from(parent.children).forEach(child => {
+        child.style.pointerEvents = 'none';
+        child.style.opacity = '0.7';
+    });
+    
+    const resultMsg = document.getElementById(`result-${qIndex}`);
+    
+    if (isCorrect) {
+        element.classList.add('correct');
+        score++;
+        resultMsg.innerHTML = '<span style="color: green;">✅ إجابة صحيحة!</span>';
+    } else {
+        element.classList.add('wrong');
+        const correctOpt = qObj.options.find(o => o.correct);
+        Array.from(parent.children).forEach(child => {
+            if (child.innerHTML.includes(correctOpt.en)) child.classList.add('correct');
+        });
+        
+        resultMsg.innerHTML = `
+            <div style="direction: rtl; text-align: right; margin-bottom: 8px;">
+                <span style="color: red; font-weight: bold; font-size: 16px;">❌ إجابة خاطئة! الإجابة الصحيحة هي:</span>
+            </div>
+            <div style="background-color: #d4edda; color: #155724; padding: 12px; border-radius: 8px; border: 1px solid #c3e6cb; margin-top: 10px;">
+                <div style="direction: ltr; text-align: left; margin-bottom: 6px; font-size: 15px; border-bottom: 1px solid #b1dfbb; padding-bottom: 6px;">
+                    <strong>EN:</strong> ${correctOpt.en}
+                </div>
+                <div style="direction: rtl; text-align: right; font-size: 15px; padding-top: 6px;">
+                    <strong>AR:</strong> ${correctOpt.ar}
+                </div>
+            </div>
+        `;
+    }
+    document.getElementById('scoreBox').innerText = `النتيجة: ${score} / ${questions.length}`;
+};
+
+window.toggleTranslation = function(index) {
+    const area = document.getElementById(`trans-${index}`);
+    const optionsAr = document.querySelectorAll(`#options-${index} .ar-opt`);
+    
+    if (area.style.display === 'block') {
+        area.style.display = 'none';
+        optionsAr.forEach(opt => opt.style.display = 'none');
+    } else {
+        area.style.display = 'block';
+        optionsAr.forEach(opt => opt.style.display = 'block');
+    }
+};
+</script>
+
+</body>
+</html>
